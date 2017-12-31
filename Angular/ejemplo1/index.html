@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS</title>
+	<!-- CDN Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-app="myApp" ng-controller="myController as ctrl">	
+	<section>
+		<div class="container-fluid">
+			<h1>Formulario Bootstrap && AngularJS</h1>
+			<form  class="form-horizontal" name="myForm">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="primerNombre" class="form-label col-sm-5">Primer nombre:</label>
+							<div class="col-sm-7">
+								<input type="text" ng-model="ctrl.person.firstName" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="" class="form-label col-sm-5">Segundo Nombre:</label>
+							<div class="col-sm-7">
+								<input type="text" ng-model="ctrl.person.secundName" class="form-control" >
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="" class="form-label col-sm-5">Primer apellido</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" ng-model="ctrl.person.firstApp">
+							</div>
+						</div>
+					</div>
+				</div> <!--/Row-->
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="" class="form-label col-sm-5">Segundo apellido:</label>
+							<div class="col-sm-7">
+								<input type="text" ng-model="ctrl.person.secundApp" class="form-control" >
+							</div>
+						</div>
+					</div>
+				</div> <!--/Row-->
+				<div class="row col-sm-12">
+					<button type="button" ng-click="ctrl.submit()" class="btn btn-success">Enviar</button>
+					<!-- <input type="submit" class="btn btn-success" value="Enviar"> -->
+					<div>
+						<p>json</p>
+						{{respuesta}}
+						<hr>
+						<p>Promesa</p>
+						{{myValue}}
+						<hr>
+						
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</section>
+	<footer>
+		
+	</footer>
+	<!-- CDN Jquery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<!--CDN Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- CDN Angular js -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+
+	<!-- App -->
+	<script src="js/app.js"></script>
+	<script src="js/controller/controller.js"></script>
+	<script src="js/service/service.js"></script>
+</body>
+</html>

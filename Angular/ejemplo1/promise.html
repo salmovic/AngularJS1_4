@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="MyAppPromise" ng-controller="myControll">
+	<h1>Promise Angular JS</h1>
+	<div>
+		<p>Valor:</p>
+		{{myValue}}
+		<hr>
+		<p>Steep:</p>
+		{{step}}
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+	<script>
+		var app = angular.module('MyAppPromise',[]);
+		app.controller('myControll',['$scope','$q',function($scope,$q){
+			$scope.addOne = function(num) {
+				var q = $q.defer();				
+				if(angular.isNumber(num)){
+					q.resolve(num+1);
+				}else{
+					q.reject('NaN');
+				}								
+				return q.promise;
+			}
+			$scope.step = 0;
+			$scope.myValue = 0;
+
+			var pr = $scope.addOne($scope.myValue);
+			pr.then(function(v){return $scope.addOne(v)})
+			.then(function(v){return $scope.addOne(v)})
+			.then(function(v){return $scope.addOne(v)})
+			.then(function(v){return $scope.addOne(v)})
+			.then(function(v){return $scope.addOne(v)})
+			.then(
+				function(v){$scope.myValue=v},
+				function(err){$scope.myValue=err}
+				)
+		}]);
+
+	</script>
+</body>
+</html>
