@@ -5,6 +5,11 @@
 	<title>AngularJS</title>
 	<!-- CDN Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		.form-control-feedback {
+			right: 15px;
+		}
+	</style>
 </head>
 <body ng-app="myApp" ng-controller="myController as ctrl">	
 	<section>
@@ -13,18 +18,30 @@
 			<form  class="form-horizontal" name="myForm">
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="form-group">
+						<div class="form-group" ng-class="{'has-error':myForm.firstName.$invalid&&myForm.firstName.$touched,'has-success':myForm.firstName.$valid&&myForm.firstName.$dirty}">
 							<label for="primerNombre" class="form-label col-sm-5">Primer nombre:</label>
 							<div class="col-sm-7">
-								<input type="text" ng-model="ctrl.person.firstName" class="form-control">
+								<input type="text" name="firstName" ng-model="ctrl.person.firstName" class="form-control" required>
+								<!-- error -->
+								<span ng-if="myForm.firstName.$invalid&&myForm.firstName.$touched" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<!-- success -->
+								<span ng-if="myForm.firstName.$valid&&myForm.firstName.$dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+								<!-- meesage -->
+								<span ng-if="myForm.firstName.$invalid&&myForm.firstName.$touched" class="help-block">Este campo es requerido.</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4">
-						<div class="form-group">
+						<div class="form-group" ng-class="{'has-error':myForm.secundName.$invalid&&myForm.secundName.$touched,'has-success':myForm.secundName.$valid&&myForm.secundName.$dirty}">
 							<label for="" class="form-label col-sm-5">Segundo Nombre:</label>
 							<div class="col-sm-7">
-								<input type="text" ng-model="ctrl.person.secundName" class="form-control" >
+								<input type="text" name="secundName" ng-model="ctrl.person.secundName" class="form-control" required>
+								<!-- error -->
+								<span ng-if="myForm.secundName.$invalid&&myForm.secundName.$touched" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<!-- success -->
+								<span ng-if="myForm.secundName.$valid&&myForm.secundName.$dirty" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+								<!-- meesage -->
+								<span ng-if="myForm.secundName.$invalid&&myForm.secundName.$touched" class="help-block">Este campo es requerido.</span>
 							</div>
 						</div>
 					</div>
@@ -48,7 +65,7 @@
 					</div>
 				</div> <!--/Row-->
 				<div class="row col-sm-12">
-					<button type="button" ng-click="ctrl.submit()" class="btn btn-success">Enviar</button>
+					<button type="button" ng-disabled="myForm.$invalid" ng-click="ctrl.submit()" class="btn btn-success">Enviar</button>
 					<!-- <input type="submit" class="btn btn-success" value="Enviar"> -->
 					<div>
 						<p>json</p>
